@@ -1,0 +1,26 @@
+<div class="container mt-4">
+  <h2>Submit a Review</h2>
+  <form [formGroup]="form" (ngSubmit)="submitReview()">
+    <div class="form-group mb-3">
+      <label for="gameId">Game ID</label>
+      <input type="number" id="gameId" class="form-control" formControlName="gameId" />
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="username">Username</label>
+      <input type="text" id="username" class="form-control" formControlName="username" />
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="reviewText">Review</label>
+      <textarea id="reviewText" class="form-control" formControlName="reviewText"></textarea>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="rating">Rating (1 to 10)</label>
+      <input type="number" id="rating" class="form-control" formControlName="rating" min="1" max="10" />
+    </div>
+
+    <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Submit</button>
+  </form>
+</div>

@@ -1,0 +1,51 @@
+﻿<!-- nav -->
+<nav class="navbar navbar-expand navbar-dark bg-dark px-5" *ngIf="user">
+  <div class="navbar-nav w-100 d-flex align-items-center">
+    <div class="d-flex align-items-center">
+      <h1 class="mb-10 text-center text-white me-4">Game Store</h1>
+
+      <!-- Home Button -->
+      <button
+        class="btn btn-link nav-item nav-link ms-3"
+        routerLink="/"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Home
+      </button>
+
+      <!-- ✅ Submit Review Button -->
+      <button
+        class="btn btn-link nav-item nav-link ms-3"
+        routerLink="/submit-review"
+        routerLinkActive="active"
+      >
+        Submit Review
+      </button>
+
+      <!-- Search Bar -->
+      <div class="search-container mx-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search games..."
+          [(ngModel)]="searchQuery"
+          (input)="onSearch()"
+        />
+      </div>
+    </div>
+
+    <!-- Logout Button -->
+    <div class="ms-auto">
+      <button class="btn btn-link nav-item nav-link" (click)="logout()">Logout</button>
+    </div>
+  </div>
+</nav>
+
+<!-- main app container -->
+<div class="app-container" [ngClass]="{ 'bg-light': user }">
+  <alert></alert>
+  <router-outlet></router-outlet>
+</div>
+
+<!-- credits (optional) -->

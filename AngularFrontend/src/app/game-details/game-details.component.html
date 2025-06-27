@@ -1,0 +1,49 @@
+<div class="game-details">
+  <div class="game-card">
+    <img [src]="game.imageUrl" alt="{{ game.name }}">
+    <h3>{{ game.name }}</h3>
+    
+    <div class="rating">
+      <span *ngFor="let i of [1,2,3,4,5]">
+        <i class="fa" [ngClass]="{'fa-star': game.rating >= i, 'fa-star-half-alt': game.rating >= i-0.5 && game.rating < i, 'fa-star-o': game.rating < i-0.5}"></i>
+      </span>
+      <span class="rating-text">{{ game.rating }}</span>
+    </div>
+    
+    <button class="install-btn" (click)="installGame(game.playStoreUrl)">Install</button>
+  </div>
+  
+  <div class="description">
+    <h3>About This Game</h3>
+    <p>{{ game.description }}</p>
+  </div>
+  
+  <div class="review-form">
+    <h3>Write a Review</h3>
+    <div class="rating-input">
+      <button 
+        *ngFor="let i of [1,2,3,4,5]" 
+        class="rating-btn" 
+        [class.selected]="selectedRating === i"
+        (click)="selectRating(i)">
+        {{i}}
+      </button>
+      <span class="rating-text" *ngIf="selectedRating > 0">{{selectedRating}}/5</span>
+    </div>
+    <textarea [(ngModel)]="reviewText" placeholder="Share your thoughts about this game..."></textarea>
+    <button (click)="submitReview()" class="submit-btn">Submit Review</button>
+  </div>
+  
+  <div class="reviews-list" *ngIf="reviews.length > 0">
+    <h3>User Reviews</h3>
+    <div class="review-item" *ngFor="let review of reviews">
+      <div class="review-header">
+        <span class="review-username">{{review.username}}</span>
+        <div class="review-rating">
+            <span class="rating-text">Rating : {{review.rating}}/5</span>
+        </div>
+      </div>
+      <p class="review-text">Review : {{review.reviewText}}</p>
+    </div>
+  </div>
+</div>

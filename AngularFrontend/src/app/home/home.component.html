@@ -1,0 +1,20 @@
+﻿
+<div class="game-list">
+  <div class="game-card" *ngFor="let game of (filteredGames.length ? filteredGames : games)">
+    <img [src]="game.imageUrl" alt="{{ game.name }}">
+    <h3>{{ game.name }}</h3>
+    
+    
+    <div class="rating">
+      <span *ngFor="let i of [1,2,3,4,5]">
+        <i class="fa" [ngClass]="{'fa-star': game.rating >= i, 'fa-star-half-alt': game.rating >= i-0.5 && game.rating < i, 'fa-star-o': game.rating < i-0.5}"></i>
+      </span>
+      <span class="rating-text">{{ game.rating }}</span>
+    </div>
+
+    <div class="buttons">
+      <button class="details-btn" (click)="router.navigate(['/game', game.id])">Details</button>
+      <button class="install-btn" (click)="installGame(game.playStoreUrl)">Install</button>
+    </div>
+  </div>
+</div>
